@@ -6,7 +6,8 @@ class Paper{
              restitution:0.3,
              friction:0,
             } 
-            this.body=ellipse(x,y,50,options);
+            this.radius=40;
+            this.body=Bodies.circle(this.x,this.y,this.radius,options)
             //this.width=20;
             //this.height=50;
             this.radius=40;                               
@@ -14,14 +15,16 @@ class Paper{
             World.add(world, this.body);
     }
     dislpay(){
+        
         var pos= this.body.position;
-        rectMode(CENTER);
-        rect(0,0,this.width,this.height);
+        ellipseMode(CENTER);
+        ellipse(this.x,this.y,this.radius);
+        image(this.image,this.x,this.y,this.radius*2);
 
+        push();
+        rotate(pos.x,pos.y);
+        translate(pos.x,pos.y)
+         push();
     }
- keyPressed(){
-     if(keyCode===UP_ARROW){
-         Matter.Body.applyForce(paperObject.body,paperObject.body.position,{x:130,y:-145});
-     }
- } 
+ 
 }
